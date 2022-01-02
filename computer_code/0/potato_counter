@@ -1,0 +1,18 @@
+local dataFolder = "/data/"
+os.loadAPI("global_vals")
+
+
+local function setup()
+    if not (fs.exists(dataFolder)) then
+        fs.makeDir(dataFolder)
+    end
+end
+
+function add(value)
+    val = global_vals.getValue("potatoes_farmed") + value
+    global_vals.store("potatoes_farmed", val)
+end
+
+function get()
+    return global_vals.getValue("potatoes_farmed")
+end

@@ -1,0 +1,26 @@
+local dataFolder = "/data/"
+
+
+local function setup()
+    if not (fs.exists(dataFolder)) then
+        fs.makeDir(dataFolder)
+    end
+end
+
+function store(name, value)
+    setup()
+    handle = fs.open(dataFolder .. name, "w")
+    handle.write(value)
+    handle.close()
+end
+
+function getValue(name)
+    setup()
+    if not (fs.exists(dataFolder .. name)) then
+        return 0
+    end
+    local handle = fs.open(dataFolder .. name, "r")
+    local ret = handle.readLine()
+    handle.close()
+    return ret
+end
